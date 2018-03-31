@@ -53,7 +53,6 @@ module.exports = Interfaces;
 */
 
 function JoyCons(interface, intervalTime = 50) {
-
   if (!interface) {
     throw new Error('Interface is missing');
   }
@@ -87,27 +86,28 @@ function JoyCons(interface, intervalTime = 50) {
     "ZL": 0
   }
 
-  let interval = setInterval(function() {
-    var gamepads = navigator.getGamepads();
-    if (!Array.isArray(gamepads)) {
-      gamepads = Object.keys(gamepads).map(index => gamepads[index]);
-    }
-    var joys = {
-      left: gamepads.find(pad => pad && pad.id && pad.id.indexOf('Joy-Con (L)') === 0),
-      right: gamepads.find(pad => pad && pad.id && pad.id.indexOf('Joy-Con (R)') === 0)
-    };
+  var gamepads = navigator.getGamepads();
+  if (!Array.isArray(gamepads)) {
+    gamepads = Object.keys(gamepads).map(index => gamepads[index]);
+  }
+  var joys = {
+    left: gamepads.find(pad => pad && pad.id && pad.id.indexOf('Joy-Con (L)') === 0),
+    right: gamepads.find(pad => pad && pad.id && pad.id.indexOf('Joy-Con (R)') === 0)
+  };
 
-    ['right', 'left'].forEach(function(joy) {
-      Object.keys(interface[joy]).forEach(function(i) {
-        let [obj, index] = i.split('-');
-        if (obj === 'axes') {
-          commands[interface[joy][i]] = joys[joy].axes[index];
-        } else {
-          commands[interface[joy][i]] = joys[joy].buttons[index].value;
-        }
-      });
+  ['right', 'left'].forEach(function(joy) {
+    if (!joys[joy]) {
+      return;
+    }
+    Object.keys(interface[joy]).forEach(function(i) {
+      let [obj, index] = i.split('-');
+      if (obj === 'axes') {
+        commands[interface[joy][i]] = joys[joy].axes[index];
+      } else {
+        commands[interface[joy][i]] = joys[joy].buttons[index].value;
+      }
     });
-  }, intervalTime);
+  });
 
   return commands;
 }

@@ -120,11 +120,9 @@
 		// Get the desired interface (one provided or a custom one);
 		var interface = JoyCons.Interfaces['chrome-ubuntu']; 
 
-		// Get the Joycon object
-		var joycons = JoyCons.Commands(interface);
-
-		// Each time you push a button or play witd an axes, tde joycons object is updated
+		// Each time you need it, call the comands function to know current buttons
 		setInterval(function() {
+			var joycons = JoyCons.Commands(interface);
 			Object.keys(joycons).forEach(function(command) {
 				document.querySelector('#' + command).innerHTML = joycons[command];
 			});
