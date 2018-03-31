@@ -1,0 +1,33 @@
+{
+	"name": "chrome-ubuntu",
+	"right": {
+		"axes-5": "RH",
+		"axes-4": "RV",
+		"buttons-0": "A",
+		"buttons-1": "X",
+		"buttons-2": "B",
+		"buttons-3": "Y",
+		"buttons-4": "RSL",
+		"buttons-5": "RSR",
+		"buttons-9": "PLUS",
+		"buttons-11": "R0",
+		"buttons-12": "HOME",
+		"buttons-14": "R",
+		"buttons-15": "ZR"
+	},
+	"left": {
+		"axes-5": "LH",
+		"axes-4": "LV",
+		"buttons-0": "RIGHT",
+		"buttons-1": "BOTTOM",
+		"buttons-2": "TOP",
+		"buttons-3": "LEFT",
+		"buttons-4": "LSL",
+		"buttons-5": "LSR",
+		"buttons-8": "MINUS",
+		"buttons-10": "L0",
+		"buttons-13": "SELECT",
+		"buttons-14": "L",
+		"buttons-15": "ZL"
+	}
+}

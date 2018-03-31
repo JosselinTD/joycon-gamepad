@@ -1,0 +1,16 @@
+{
+  "name": "joycon-gamepad",
+  "version": "1.0.0",
+  "description": "An interface between Gamepad API and Joycons",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "joycon",
+    "gamepad",
+    "api"
+  ],
+  "author": "JosselinTD <josselin.td@gmail.com>",
+  "license": "ISC"
+}
