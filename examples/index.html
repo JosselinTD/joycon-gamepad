@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test of tde Joycon-Gamepad library</title>
+	<script type="text/javascript" src="../dist/joycon-gamepad.js"></script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Command</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>Right stick horizontal</td>
+			<td id="RH"></td>
+		</tr>
+		<tr>
+			<td>Right stick vertical</td>
+			<td id="RV"></td>
+		</tr>
+		<tr>
+			<td>Button A</td>
+			<td id="A"></td>
+		</tr>
+		<tr>
+			<td>Button B</td>
+			<td id="B"></td>
+		</tr>
+		<tr>
+			<td>Button X</td>
+			<td id="X"></td>
+		</tr>
+		<tr>
+			<td>Button Y</td>
+			<td id="Y"></td>
+		</tr>
+		<tr>
+			<td>Button RSL</td>
+			<td id="RSL"></td>
+		</tr>
+		<tr>
+			<td>Button RSR</td>
+			<td id="RSR"></td>
+		</tr>
+		<tr>
+			<td>Button +</td>
+			<td id="PLUS"></td>
+		</tr>
+		<tr>
+			<td>Button R0</td>
+			<td id="R0"></td>
+		</tr>
+		<tr>
+			<td>Button Home</td>
+			<td id="HOME"></td>
+		</tr>
+		<tr>
+			<td>Button R</td>
+			<td id="R"></td>
+		</tr>
+		<tr>
+			<td>Button ZR</td>
+			<td id="ZR"></td>
+		</tr>
+		<tr>
+			<td>Left stick horizontal</td>
+			<td id="LH"></td>
+		</tr>
+		<tr>
+			<td>Left stick horizontal</td>
+			<td id="LV"></td>
+		</tr>
+		<tr>
+			<td>Button Right arrow</td>
+			<td id="RIGHT"></td>
+		</tr>
+		<tr>
+			<td>Button Left arrow</td>
+			<td id="LEFT"></td>
+		</tr>
+		<tr>
+			<td>Button Top arrow</td>
+			<td id="TOP"></td>
+		</tr>
+		<tr>
+			<td>Button Bottom arrow</td>
+			<td id="BOTTOM"></td>
+		</tr>
+		<tr>
+			<td>Button LSL</td>
+			<td id="LSL"></td>
+		</tr>
+		<tr>
+			<td>Button LSR</td>
+			<td id="LSR"></td>
+		</tr>
+		<tr>
+			<td>Button -</td>
+			<td id="MINUS"></td>
+		</tr>
+		<tr>
+			<td>Button L0</td>
+			<td id="L0"></td>
+		</tr>
+		<tr>
+			<td>Button Select</td>
+			<td id="SELECT"></td>
+		</tr>
+		<tr>
+			<td>Button L</td>
+			<td id="L"></td>
+		</tr>
+		<tr>
+			<td>Button ZL</td>
+			<td id="ZL"></td>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+		// Get the desired interface (one provided or a custom one);
+		var interface = JoyCons.Interfaces['chrome-ubuntu']; 
+
+		// Get the Joycon object
+		var joycons = JoyCons.Commands(interface);
+
+		// Each time you push a button or play witd an axes, tde joycons object is updated
+		setInterval(function() {
+			Object.keys(joycons).forEach(function(command) {
+				document.querySelector('#' + command).innerHTML = joycons[command];
+			});
+		}, 40)
+	</script>
+</body>
+</html>

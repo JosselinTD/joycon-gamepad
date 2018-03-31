@@ -1,6 +1,8 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-require('./interfaces');
-require('./lib');
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.JoyCons = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports = {
+  Interfaces: require('./interfaces'),
+  Commands: require('./lib')
+};
 
 },{"./interfaces":3,"./lib":4}],2:[function(require,module,exports){
 module.exports={
@@ -50,10 +52,8 @@ module.exports = Interfaces;
 - Interface: object of type {name, right, left}, examples are available in the interfaces folder
 */
 
-function JoyCons(gamepads, interface, intervalTime = 50) {
-  if (!gamepads || !gamepads.right || !gamepads.left) {
-    throw new Error('Gamepads left or right is missing');
-  }
+function JoyCons(interface, intervalTime = 50) {
+
   if (!interface) {
     throw new Error('Interface is missing');
   }
@@ -88,13 +88,22 @@ function JoyCons(gamepads, interface, intervalTime = 50) {
   }
 
   let interval = setInterval(function() {
+    var gamepads = navigator.getGamepads();
+    if (!Array.isArray(gamepads)) {
+      gamepads = Object.keys(gamepads).map(index => gamepads[index]);
+    }
+    var joys = {
+      left: gamepads.find(pad => pad && pad.id && pad.id.indexOf('Joy-Con (L)') === 0),
+      right: gamepads.find(pad => pad && pad.id && pad.id.indexOf('Joy-Con (R)') === 0)
+    };
+
     ['right', 'left'].forEach(function(joy) {
       Object.keys(interface[joy]).forEach(function(i) {
         let [obj, index] = i.split('-');
         if (obj === 'axes') {
-          commands[interface[joy][i]] = gamepads[joy].axes[index];
+          commands[interface[joy][i]] = joys[joy].axes[index];
         } else {
-          commands[interface[joy][i]] = gamepads[joy].buttons[index].value;
+          commands[interface[joy][i]] = joys[joy].buttons[index].value;
         }
       });
     });
@@ -105,4 +114,5 @@ function JoyCons(gamepads, interface, intervalTime = 50) {
 
 module.exports = JoyCons;
 
-},{}]},{},[1]);
+},{}]},{},[1])(1)
+});

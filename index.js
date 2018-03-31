@@ -1,2 +1,4 @@
-require('./interfaces');
-require('./lib');
+module.exports = {
+  Interfaces: require('./interfaces'),
+  Commands: require('./lib')
+};

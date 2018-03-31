@@ -22,10 +22,10 @@ var joys = {
 };
 
 // Get the desired interface (one provided or a custom one);
-var interface = Interfaces['chrome-ubuntu']; 
+var interface = JoyCons.Interfaces['chrome-ubuntu']; 
 
 // Get the Joycon object
-var joycons = JoyCons(joys, interface);
+var joycons = JoyCons.Commands(joys, interface);
 
 // Each time you push a button or play with an axes, the joycons object is updated
 ```
