@@ -4,7 +4,8 @@
   "description": "An interface between Gamepad API and Joycons",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "browserify index.js --standalone JoyCons -o dist/joycon-gamepad.js"
   },
   "keywords": [
     "joycon",
