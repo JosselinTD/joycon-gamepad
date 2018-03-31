@@ -5,6 +5,11 @@ An interface between Gamepad API and Joycons
 ## How to use
 
 ```
+// Include the dist script in your html
+<script type="text/javascript" src="./node_modules/joycon-gamepad/dist/joycon-gamepad.js"></script>
+```
+
+```
 // Connect both JoyCons by Bluetooth
 // Store them in a variable
 var gamepads = navigator.getGamepads();
